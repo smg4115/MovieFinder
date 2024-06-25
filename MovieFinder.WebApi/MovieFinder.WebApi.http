@@ -1,0 +1,6 @@
+@MovieFinder.WebApi_HostAddress = http://localhost:5005
+
+GET {{MovieFinder.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
