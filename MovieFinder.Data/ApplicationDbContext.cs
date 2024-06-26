@@ -7,8 +7,10 @@ namespace MovieFinder.Data;
 
 public class ApplicationDbContext : IdentityDbContext<UserEntity, IdentityRole<int>, int>
 {
-     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
+
+        public DbSet<MovieEntity> Movies {get; set;} = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
