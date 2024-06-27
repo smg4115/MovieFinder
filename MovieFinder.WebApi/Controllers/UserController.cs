@@ -32,5 +32,18 @@ namespace MovieFinder.WebApi.Controllers
 
             return BadRequest(new TextResponse("User could not be registered."));
         }
+
+        [HttpGet("{UserId:int}")]
+        public async Task<IActionResult> GetById()
+        {
+            UserDetail? detail = await _userService.GetUserByIdAsync(userId);
+
+            if (detail is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(detail);
+        }
     }
 }
