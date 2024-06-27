@@ -17,4 +17,8 @@ public class ReviewEntity
   public UserEntity User { get; set; } = null!;
 
   [Required, Range(0.0, 10.0)]
-  publi
+  public double Rating { get; set; }
+
+  [Required, MinLength(1), MaxLength(200)]
+  public string Comment { get; set; } = string.Empty;
+}
