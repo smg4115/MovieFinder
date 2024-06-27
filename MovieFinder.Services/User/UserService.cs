@@ -46,6 +46,25 @@ public class UserService : IUserService
         return registerResult.Succeeded;
     }
 
+    public async Task<UserDetail?> GetUserByIdAsync(int userId)
+    {
+        var entity = await _context.Users.FindAsync(userId);
+        if (entity is null)
+            return null;
+
+        UserDetail detail = new()
+        {
+            Id = entity.Id,
+            Email = entity.Email,
+            UserName = entity.Username!,
+            FirstName = entity.FirstName!,
+            LastName = entity.LastName,
+            DateCreated = entity.DateCreated
+        };
+
+        return detail;
+    }
+
     private async Task<bool> CheckUserNameAvailability(string userName)
     {
         UserEntity? existingUser = await _userManager.FindByNameAsync(userName);
