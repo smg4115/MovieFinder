@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
+using MovieFinder.Models.Responses;
+using MovieFinder.Models.User;
 using MovieFinder.Services.User;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MyApp.Namespace
+namespace MovieFinder.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -11,6 +13,24 @@ namespace MyApp.Namespace
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> RegisterUser([FromBody] UserRegister model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var registerResult = await _userService.RegisterUserAsync(model);
+            if (registerResult)
+            {
+                TextResponse response = new("User was registered.");
+                return Ok(response);
+            }
+
+            return BadRequest(new TextResponse("User could not be registered."));
         }
     }
 }
