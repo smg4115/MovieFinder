@@ -1,4 +1,4 @@
-namespace MovieFinder.Services.User
+namespace MovieFinder.Models.User;
 
 public class UserDetail
 {

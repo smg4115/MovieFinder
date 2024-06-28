@@ -2,6 +2,7 @@ using MovieFinder.Models.Responses;
 using MovieFinder.Models.User;
 using MovieFinder.Services.User;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieFinder.WebApi.Controllers
 {
@@ -33,8 +34,9 @@ namespace MovieFinder.WebApi.Controllers
             return BadRequest(new TextResponse("User could not be registered."));
         }
 
-        [HttpGet("{UserId:int}")]
-        public async Task<IActionResult> GetById()
+        [Authorize]
+        [HttpGet("{userId:int}")]
+        public async Task<IActionResult> GetById(int userId)
         {
             UserDetail? detail = await _userService.GetUserByIdAsync(userId);
 

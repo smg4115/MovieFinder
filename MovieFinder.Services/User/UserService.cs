@@ -48,7 +48,7 @@ public class UserService : IUserService
 
     public async Task<UserDetail?> GetUserByIdAsync(int userId)
     {
-        var entity = await _context.Users.FindAsync(userId);
+        UserEntity? entity = await _context.Users.FindAsync(userId);
         if (entity is null)
             return null;
 
@@ -56,7 +56,7 @@ public class UserService : IUserService
         {
             Id = entity.Id,
             Email = entity.Email,
-            UserName = entity.Username!,
+            UserName = entity.UserName!,
             FirstName = entity.FirstName!,
             LastName = entity.LastName,
             DateCreated = entity.DateCreated
