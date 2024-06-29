@@ -186,6 +186,7 @@ namespace MovieFinder.Data.Migrations
                     b.HasKey("MovieId");
 
                     b.ToTable("Movies");
+                });
 
             modelBuilder.Entity("MovieFinder.Data.Entities.ReviewEntity", b =>
                 {
