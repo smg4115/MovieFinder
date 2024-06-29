@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MovieFinder.Models.Responses;
+using MovieFinder.Models.Review;
 using MovieFinder.Services.Review;
 
 namespace MovieFinder.WebApi.Controllers;
@@ -23,6 +25,23 @@ public class ReviewController : ControllerBase
         _reviewService = reviewService;
     }
 
+    // Post api/Review
+    [HttpPost]
+    public async Task<IActionResult> CreateReview([FromBody] ReviewCreate request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var response = await _reviewService.CreateReviewAsync(request);
+        if (response is not null)
+        {
+            return Ok(response);
+        }
+
+        return BadRequest(new TextResponse("Could not create review"));
+    }
 
     // GET api/Review
     [HttpGet]

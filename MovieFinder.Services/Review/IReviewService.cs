@@ -2,4 +2,8 @@ using MovieFinder.Models.Review;
 
 namespace MovieFinder.Services.Review;
 
-publ
+public interface IReviewService
+{
+  Task<ReviewListItem?> CreateReviewAsync(ReviewCreate request);
+  Task<IEnumerable<ReviewListItem>> GetAllReviewsAsync();
+}
