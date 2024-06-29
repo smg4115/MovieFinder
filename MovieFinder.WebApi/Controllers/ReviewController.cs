@@ -55,6 +55,15 @@ public class ReviewController : ControllerBase
             : NotFound();
     }
 
+    // Delete api/Review/#
+    [HttpDelete("{reviewId:int}")]
+    public async Task<IActionResult> DeleteReview([FromRoute] int reviewId)
+    {
+        return await _reviewService.DeleteReviewAsync(reviewId)
+            ? Ok($"Review {reviewId} was deleted successfully. ")
+            : BadRequest($"Review {reviewId} could not be deleted");
+    }
+
     // GET api/Review
     [HttpGet]
     public async Task<IActionResult> GetAllReviews()
