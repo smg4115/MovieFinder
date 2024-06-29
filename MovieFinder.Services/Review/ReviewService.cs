@@ -69,4 +69,20 @@ public class ReviewService : IReviewService
 
       return reviews;
     }
+
+    public async Task<ReviewDetail?> GetReviewByIdAsync(int reviewId)
+    {
+      // Find the first review that has the given Id
+      ReviewEntity? entity = await _dbContext.Reviews.FirstOrDefaultAsync(entity => entity.Id == reviewId);
+
+      // If the not entity is null, return null
+      return entity is null ? null : new ReviewDetail
+      {
+        Id = entity.Id,
+        MovieId = entity.MovieId,
+        UserId = entity.UserId,
+        Rating = entity.Rating,
+        Comment = entity.Comment
+      };
+    }
 }

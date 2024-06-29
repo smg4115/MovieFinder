@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using MovieFinder.Models.Responses;
 using MovieFinder.Models.Review;
 using MovieFinder.Services.Review;
@@ -41,6 +42,17 @@ public class ReviewController : ControllerBase
         }
 
         return BadRequest(new TextResponse("Could not create review"));
+    }
+
+    // Get api/Review/#
+    [HttpGet("{reviewId:int}")]
+    public async Task<IActionResult> GetReviewByIdAsync([FromRoute] int reviewId)
+    {
+        ReviewDetail? detail = await _reviewService.GetReviewByIdAsync(reviewId);
+
+        return detail is not null
+            ? Ok(detail)
+            : NotFound();
     }
 
     // GET api/Review
