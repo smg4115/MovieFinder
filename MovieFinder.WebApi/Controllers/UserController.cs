@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MovieFinder.Models.Responses;
 using MovieFinder.Models.User;
 using MovieFinder.Services.User;

@@ -1,3 +1,5 @@
+using MovieFinder.Models.Token;
+
 namespace MovieFinder.Services.Token;
 
 public interface ITokenService

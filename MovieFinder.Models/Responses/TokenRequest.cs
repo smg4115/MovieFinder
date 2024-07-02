@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace MovieFinder.Models.Token;
 
 public class TokenRequest
