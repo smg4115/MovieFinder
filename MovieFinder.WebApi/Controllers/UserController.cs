@@ -11,9 +11,11 @@ namespace MovieFinder.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ITokenService _tokenService;
         public UserController(IUserService userService)
         {
             _userService = userService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("Register")]
@@ -46,6 +48,20 @@ namespace MovieFinder.WebApi.Controllers
             }
 
             return Ok(detail);
+        }
+
+        [HttpPost("~/api/Token")]
+        public async Task<IActionResult> GetToken([FromBody] TokenRequest request)
+        {
+            if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+            TokenResponse? response = await _tokenService.GetTokenAsync(request);
+
+            if (response is null)
+                return BadRequest(new TextResponse("Invalid username or password."));
+
+            return Ok(response);
         }
     }
 }

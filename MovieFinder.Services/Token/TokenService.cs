@@ -85,7 +85,7 @@ public class TokenService : ITokenService
 
     private SecurityTokenDescriptor GetTokenDescriptor(List<Claim> claims)
     {
-        var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!);
+         var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!);
         var secret = new SymmetricSecurityKey(key);
         var signingCredentials = new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
 
