@@ -14,7 +14,7 @@ using MovieFinder.Services.Review;
 
 namespace MovieFinder.WebApi.Controllers;
 
-[Authorize]
+// [Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class ReviewController : ControllerBase

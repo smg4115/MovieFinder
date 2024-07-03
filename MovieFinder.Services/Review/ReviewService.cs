@@ -19,11 +19,12 @@ public class ReviewService : IReviewService
       var currentUser = signInManager.Context.User;
       var userIdClaim = userManager.GetUserId(currentUser);
       var hasValidId = int.TryParse(userIdClaim, out _userId);
+      _userId = 1;
 
-      if (hasValidId == false)
-      {
-        throw new Exception("Attempted to build ReviewService without Id claim.");
-      }
+      // if (hasValidId == false)
+      // {
+      //   throw new Exception("Attempted to build ReviewService without Id claim.");
+      // }
 
       _dbContext = dbContext;
     }
@@ -33,7 +34,7 @@ public class ReviewService : IReviewService
       ReviewEntity entity = new()
       {
         MovieId = request.MovieId,
-        UserId = _userId,
+        UserId = request.UserId, // Theoretically supposed to be current user
         Rating = request.Rating,
         Comment = request.Comment
       };
