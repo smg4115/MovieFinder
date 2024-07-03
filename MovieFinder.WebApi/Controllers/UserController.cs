@@ -4,6 +4,8 @@ using MovieFinder.Models.User;
 using MovieFinder.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MovieFinder.Models.Token;
+using MovieFinder.Services.Token;
 
 namespace MovieFinder.WebApi.Controllers
 {
@@ -13,7 +15,7 @@ namespace MovieFinder.WebApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ITokenService tokenService)
         {
             _userService = userService;
             _tokenService = tokenService;

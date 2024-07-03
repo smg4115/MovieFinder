@@ -1,6 +1,7 @@
 namespace MovieFinder.Data.Entities;
 
-public class Genre
+public class GenreEntity
 {
+    public int Id { get; set; }
     public string Title { get; set; }
 }
