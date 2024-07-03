@@ -87,6 +87,26 @@ public class ReviewService : IReviewService
       };
     }
 
+    public async Task<bool> UpdateReviewAsync(ReviewUpdate request)
+    {
+      ReviewEntity? entity = await _dbContext.Reviews.FindAsync(request.Id);
+
+      //Didn't include because we didn't work out the user authentication stuff
+      // if(entity?.UserId != _userId)
+      // {
+      //   return false;
+      // }
+
+      entity.MovieId = request.MovieId;
+      entity.UserId = request.UserId;
+      entity.Rating = request.Rating;
+      entity.Comment = request.Comment;
+
+      int numberOfChanges = await _dbContext.SaveChangesAsync();
+
+      return numberOfChanges == 1;
+    }
+
     public async Task<bool> DeleteReviewAsync(int reviewId)
     {
       // Find the review by the id

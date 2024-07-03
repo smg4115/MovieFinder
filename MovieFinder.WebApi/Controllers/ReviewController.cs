@@ -55,6 +55,20 @@ public class ReviewController : ControllerBase
             : NotFound();
     }
 
+    // Put api/Review
+    [HttpPut]
+    public async Task<IActionResult> UpdateReviewById([FromBody] ReviewUpdate request)
+    {
+        if(!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        return await _reviewService.UpdateReviewAsync(request)
+            ? Ok("Review updated successfully.")
+            : BadRequest("Review could not be updated.");
+    }
+
     // Delete api/Review/#
     [HttpDelete("{reviewId:int}")]
     public async Task<IActionResult> DeleteReview([FromRoute] int reviewId)

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace MovieFinder.Models.Review;
 
-public class ReviewCreate
+public class ReviewUpdate
 {
+    [Required]
+    public int Id { get; set; }
+
     [Required]
     public int MovieId { get; set; }
 
@@ -20,4 +23,6 @@ public class ReviewCreate
     [Required]
     [MinLength(1, ErrorMessage = "{0} must be at least {1} character long")]
     [MaxLength(200, ErrorMessage = "{0} must be no more than {1} characters long")]
-    p
+    public string Comment { get; set; } = string.Empty;
+
+}

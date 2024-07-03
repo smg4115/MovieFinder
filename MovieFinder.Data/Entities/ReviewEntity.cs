@@ -20,5 +20,4 @@ public class ReviewEntity
   public double Rating { get; set; }
 
   [Required, MinLength(1), MaxLength(200)]
-  public string Comment { get; set; } = string.Empty;
-}
+  public string Comment { get; set; } = string.Em
