@@ -8,4 +8,5 @@ public interface IReviewService
   Task<IEnumerable<ReviewListItem>> GetAllReviewsAsync();
   Task<ReviewDetail?> GetReviewByIdAsync(int reviewId);
   Task<bool> DeleteReviewAsync(int reviewId); 
- 
+  Task<bool> UpdateReviewAsync(ReviewUpdate request);
+}
