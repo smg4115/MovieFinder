@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MovieFinder.Models.Movie;
 
-public class MovieAdd
+public class MovieUpdate
 {
+    [Required]
+    public int Id { get; set; }
     [Required]
     public string Title { get; set; } = string.Empty;
     [Required]
@@ -12,5 +14,4 @@ public class MovieAdd
     public string MpaRating { get; set; } = string.Empty;
     [Required]
     public int Genre { get; set; }
-
 }
