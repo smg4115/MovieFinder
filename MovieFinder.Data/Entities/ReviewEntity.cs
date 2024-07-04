@@ -14,7 +14,7 @@ public class ReviewEntity
   [Required]
   // [ForeignKey(nameof(User))]
   public int UserId { get; set; }
-  // public UserEntity User { get; set; } = null!;
+  // public virtual User  User { get; set; }
 
   [Required, Range(0.0, 10.0)]
   public double Rating { get; set; }
