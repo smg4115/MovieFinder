@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieFinder.Data;
 
@@ -11,9 +12,11 @@ using MovieFinder.Data;
 namespace MovieFinder.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240627223306_AddForeignKey")]
+    partial class AddForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,34 +162,6 @@ namespace MovieFinder.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-
-            modelBuilder.Entity("MovieFinder.Data.Entities.MovieEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Director")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Genre")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MpaRating")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Movies");
-
             modelBuilder.Entity("MovieFinder.Data.Entities.ReviewEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -214,7 +189,6 @@ namespace MovieFinder.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
-
                 });
 
             modelBuilder.Entity("MovieFinder.Data.Entities.UserEntity", b =>
