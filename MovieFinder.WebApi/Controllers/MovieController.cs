@@ -68,7 +68,9 @@ public class MovieController : ControllerBase
     public async Task<IActionResult> UpdateMovieById([FromBody] MovieUpdate request)
     {
         if (!ModelState.IsValid)
+        {
         return BadRequest(ModelState);
+        }
 
         return await _movieService.UpdateMovieAsync(request)
             ? Ok("Movie updated successfully.")
