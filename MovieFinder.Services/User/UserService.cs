@@ -12,8 +12,8 @@ public class UserService : IUserService
     private readonly SignInManager<UserEntity> _signInManager;
 
     public UserService(ApplicationDbContext context,
-                       UserManager<UserEntity> userManager,
-                       SignInManager<UserEntity> signInManager)
+                        UserManager<UserEntity> userManager,
+                        SignInManager<UserEntity> signInManager)
     {
         _context = context;
         _userManager = userManager;
