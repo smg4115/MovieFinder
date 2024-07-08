@@ -3,14 +3,16 @@ using MovieFinder.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MovieFinder.Services.User;
+using MovieFinder.Services.Review;
 using MovieFinder.Services.Movie;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
-
 
 builder.Services.AddHttpContextAccessor();
 
