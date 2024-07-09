@@ -1,8 +1,7 @@
-using ElevenNote.Data;
-using ElevenNote.Data.Entities;
-using ElevenNote.Models.User;
+using MovieFinder.Data;
+using MovieFinder.Data.Entities;
+using MovieFinder.Models.User;
 using Microsoft.AspNetCore.Identity;
-
 
 namespace MovieFinder.Services.User;
 
@@ -25,36 +24,37 @@ public class UserService : IUserService
     {
         if (await CheckEmailAvailability(model.Email) == false)
         {
-            System.Console.WriteLine("Invalid email, Already in use.");
+            Console.WriteLine("Invalid email, already in use.");
             return false;
         }
 
-        if (await CheckUserNameAvailability(model.Username) == false)
+        if (await CheckUserNameAvailability(model.UserName) == false)
         {
-            System.Console.WriteLine("Invalid username, already in use.");
+            Console.WriteLine("Invalid username, already in use.");
             return false;
         }
+
         UserEntity entity = new()
         {
             Email = model.Email,
             UserName = model.UserName,
             DateCreated = DateTime.Now
         };
-        
+
         IdentityResult registerResult = await _userManager.CreateAsync(entity, model.Password);
 
         return registerResult.Succeeded;
     }
 
-    private async Tasl<bool> CheckUserNameAvailability(string userName)
+    private async Task<bool> CheckUserNameAvailability(string userName)
     {
-        UserEntity?ExistingUser = await _userManager.FindByNameAsync(userName)
-        return ExistingUser is null;
+        UserEntity? existingUser = await _userManager.FindByNameAsync(userName);
+        return existingUser is null;
     }
 
     private async Task<bool> CheckEmailAvailability(string email)
     {
         UserEntity? existingUser = await _userManager.FindByEmailAsync(email);
-        return esistingUser is null;
+        return existingUser is null;
     }
- }
+}
